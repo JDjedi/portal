@@ -1,8 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'; // react router syntax below v4! 
-import createBrowserHistory from 'history/createBrowserHistory';
+import { Router, Switch, Route } from 'react-router-dom'; // react router syntax below v4! 
+import { createBrowserHistory } from 'history';
 
 import Signup from './../imports/ui/Signup';
 import Userlink from './../imports/ui/Userlink';
