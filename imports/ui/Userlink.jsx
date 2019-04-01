@@ -1,12 +1,10 @@
 import React from 'react';
-
-// import { createBrowserHistory } from 'history';		// this is passed from the main.js file
-// const history = createBrowserHistory();				// use this.props.history.etc...
+import { Accounts } from 'meteor/accounts-base'
 
 
 export default class Userlink extends React.Component {
 	onLogout(e) {
-	    this.props.history.push('/login')
+	    Accounts.logout(); 
 	}
 
 	render() {
