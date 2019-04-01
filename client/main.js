@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Switch, Route } from 'react-router-dom'; // react router syntax below v4! 
+import { Router, Switch, Route, Redirect } from 'react-router-dom'; // react router syntax below v4! 
 import { createBrowserHistory } from 'history';
 import { Tracker } from 'meteor/tracker';
 
@@ -14,13 +14,29 @@ const history = createBrowserHistory();
 const unAuthenticatedPages = ['/signup', '/login', '*', '/Userlink'];
 const authenticatedPages = ['/userlink']
 
+
+const onEnterPublicPage = (Component) => {
+    if (Meteor.userId()) {
+        return <Redirect to="/userlink" />
+    } else {
+        return <Component />
+    }
+}
+
+const onEnterPrivatePage = (Component) => {
+    if (!Meteor.userId()) {
+        return <Redirect to="/login" />
+    } else {
+        return <Component />
+    }
+}
+
 const routes = (	
 	<Router history={history}>
 		<Switch>
-
-			<Route exact path="/userlink" component={Userlink} />
-			<Route exact path="/signup" component={Signup} />
-			<Route exact path="/login" component={Login} />
+			<Route exact path="/userlink" component={Userlink} render={() => onEnterPublicPage(Login)} />
+			<Route exact path="/signup" component={Signup} render={() => onEnterPublicPage(Signup)} />
+			<Route exact path="/login" component={Login} render={() =>  onEnterPrivatePage(Userlink)} />
 			<Route exact path="*" component={Notfound} />
 		</Switch>
 	</Router>
@@ -39,6 +55,7 @@ Tracker.autorun(() => {
 	} else if (isAuthenticatedPage && !isAuthenticated) {
 		history.push('/login')
 	}
+
 })
 
 Meteor.startup(() => {
