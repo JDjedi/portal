@@ -19,7 +19,7 @@ export default class Login extends React.Component {
 
 		Meteor.loginWithPassword({email}, password, (error) => {
 			if (error) {
-				this.setState({error: error.reason})
+				this.setState({error: "Unable to login, check email and or password."})
 			} else {
 				this.setState({error: ''})
 			}
