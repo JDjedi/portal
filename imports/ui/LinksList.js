@@ -14,15 +14,15 @@ export default class LinksList extends React.Component {
 
 	// below fires right after the component is rendered to the screen
 	componentDidMount() {
-		Tracker.autorun(() => { // used to track changes to what you define from within, and then returns the changes
-			const returnedLinks = Links.find().fetch();
-			this.setState({ returnedLinks })
+		this.linksTracker = Tracker.autorun(() => { // used to track changes to what you define from within, and then returns the changes
+			const links = Links.find().fetch();
+			this.setState({ links })
 		})
 	}
 
 	// below fires after component is removed from the screen
 	componentWillUnmount() {
-
+		this.linksTracker.stop(); // stops the auto tracker from running after the component is closed
 	}
 
 	renderLinksListItems() {
