@@ -1,61 +1,12 @@
 import { Meteor } from 'meteor/meteor';
-import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Switch, Route, Redirect } from 'react-router-dom'; // react router syntax below v4! 
-import { createBrowserHistory } from 'history';
 import { Tracker } from 'meteor/tracker';
-
-import Signup from './../imports/ui/Signup';
-import Userlink from './../imports/ui/Userlink';
-import Notfound from './../imports/ui/NotFound';
-import Login from './../imports/ui/Login';
-
-const history = createBrowserHistory();
-const unAuthenticatedPages = ['/signup', '/login', '*', '/Userlink'];
-const authenticatedPages = ['/userlink']
-
-
-const onEnterPublicPage = (Component) => {
-    if (Meteor.userId()) {
-        return <Redirect to="/userlink" />
-    } else {
-        return <Component />
-    }
-}
-
-const onEnterPrivatePage = (Component) => {
-    if (!Meteor.userId()) {
-        return <Redirect to="/login" />
-    } else {
-        return <Component />
-    }
-}
-
-const routes = (	
-	<Router history={history}>
-		<Switch>
-			<Route exact path="/userlink" component={Userlink} render={() => onEnterPublicPage(Login)} />
-			<Route exact path="/signup" component={Signup} render={() => onEnterPublicPage(Signup)} />
-			<Route exact path="/login" component={Login} render={() =>  onEnterPrivatePage(Userlink)} />
-			<Route exact path="*" component={Notfound} />
-		</Switch>
-	</Router>
-);
+import { routes, onAuthChange } from '../imports/routes/routes'
 
 // track status of what you want it to track and acts or reacts on it
 Tracker.autorun(() => { 
-	// !! takes a falsy or truthy value and makes it a real true or false, boolean
-	const isAuthenticated = !!Meteor.userId(); 
-	const pathname = history.location.pathname;
-	const isUnauthenticatedPage = unAuthenticatedPages.includes(pathname);
-	const isAuthenticatedPage = authenticatedPages.includes(pathname);
-
-	if (isUnauthenticatedPage && isAuthenticated) {
-		history.push('/userlink')
-	} else if (isAuthenticatedPage && !isAuthenticated) {
-		history.push('/login')
-	}
-
+	const isAuthenticated = !!Meteor.userId();  // !! takes a falsy or truthy value and makes it a real true or false, boolean
+	onAuthChange(isAuthenticated)
 })
 
 Meteor.startup(() => {
