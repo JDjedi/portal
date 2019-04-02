@@ -1,4 +1,5 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor'
 import { Accounts } from 'meteor/accounts-base';
 
 import LinksList from './LinksList';
@@ -14,7 +15,7 @@ export default class Userlink extends React.Component {
 		const url = this.refs.url.value.trim()
 		e.preventDefault() // needed to prevent page reset on firing function
 		if (url) {
-			Links.insert({ url });
+			Links.insert({ url, userId: Meteor.userId() });
 			this.refs.url.value = '';
 		}
 	}
@@ -25,7 +26,6 @@ export default class Userlink extends React.Component {
 				<h1>Your Links</h1>
 				<button onClick={this.onLogout.bind(this)}>Logout</button>
 				<LinksList />
-				<p>Add Link</p>
 				<form onSubmit={this.onSubmit.bind(this)}>
 					<input type="text" ref="url" placeholder="URL"></input>
 					<button>Add Link</button>
