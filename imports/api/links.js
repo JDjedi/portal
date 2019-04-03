@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
+import SimpleSchema from 'simpl-schema'; 
 
 export const Links = new Mongo.Collection('links') // export to have other files use this, const so that you can use it as a function call
 
@@ -17,11 +18,27 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-	addNumbers(a, b) {
-		if ((typeof a === 'number') && (typeof b === 'number')) {
-			return a + b
-		} else {
-			throw new Error('typeof number violation, enter valid number data.')
+	// addNumbers(a, b) { // meteor method test example
+	// 	if ((typeof a === 'number') && (typeof b === 'number')) {
+	// 		return a + b
+	// 	} else {
+	// 		throw new Error('typeof number violation, enter valid number data.')
+	// 	}
+	// }
+
+
+	'links.insert'(url) { // naming convention right here
+		if (!this.userId) {
+			throw new Meteor.Error('not-authorized') // if this condition is not met, the program throws error and ends, otherwise it continues
 		}
+
+		new SimpleSchema({
+			url: {type: String, label: 'Your link', regEx: SimpleSchema.RegEx.Url}
+		}).validate({url: url})
+
+		Links.insert({
+			url,
+			userId: this.userId
+		});
 	}
 })

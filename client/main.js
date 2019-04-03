@@ -4,6 +4,7 @@ import { Tracker } from 'meteor/tracker';
 
 import { routes, onAuthChange } from '../imports/routes/routes'
 import { Links } from '../imports/api/links';
+import '../imports/startup/simple-schema-config.js';
 
 // track status of what you want it to track and acts or reacts on it
 Tracker.autorun(() => { 
@@ -12,15 +13,14 @@ Tracker.autorun(() => {
 })
 
 Meteor.startup(() => {
-	Meteor.call('addNumbers', 2, 4, (err, res) => {
-		console.log("addNumbers function firing", err, res);
-	});
+	// Meteor.call('addNumbers', 2, 4, (err, res) => {
+	// 	console.log("addNumbers function firing", err, res);
+	// });
 
-	Meteor.call('addNumbers', "two piece tuesdays", 4, (err, res) => {
-		console.log("addNumbers function firing", err, res);
-	});
-
-
+	// Meteor.call('addNumbers', "two piece tuesdays", 4, (err, res) => {
+	// 	console.log("addNumbers function firing", err, res);
+	// });
+	
 	ReactDOM.render(routes, document.getElementById('app'));
 });
 

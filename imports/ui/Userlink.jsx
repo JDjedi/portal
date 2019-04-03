@@ -14,8 +14,8 @@ export default class Userlink extends React.Component {
 	onSubmit(e) {
 		const url = this.refs.url.value.trim()
 		e.preventDefault() // needed to prevent page reset on firing function
-		if (url) {
-			Links.insert({ url, userId: Meteor.userId() });
+		if (url) { 
+			Meteor.call('links.insert', url); // meteor method call to links.js meteor method
 			this.refs.url.value = '';
 		}
 	}

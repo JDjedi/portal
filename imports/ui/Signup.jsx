@@ -31,6 +31,7 @@ export default class Signup extends React.Component {
 			//console.log('Signup callback', error.reason);
 			if (error) {
 				this.setState({error: error.reason})
+				console.log(error)
 			} else {
 				this.setState({error: ''})
 			}
