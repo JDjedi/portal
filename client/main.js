@@ -12,6 +12,15 @@ Tracker.autorun(() => {
 })
 
 Meteor.startup(() => {
+	Meteor.call('addNumbers', 2, 4, (err, res) => {
+		console.log("addNumbers function firing", err, res);
+	});
+
+	Meteor.call('addNumbers', "two piece tuesdays", 4, (err, res) => {
+		console.log("addNumbers function firing", err, res);
+	});
+
+
 	ReactDOM.render(routes, document.getElementById('app'));
 });
 
