@@ -1,37 +1,32 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor'
-import { Accounts } from 'meteor/accounts-base';
+
 
 import LinksList from './LinksList';
+import PrivateHeader from './PrivateHeader';
+import AddLink from './AddLink'
 import { Links } from '../api/links';
 
+// below was old functionaility, was not a container component; a more complicated container
+// it was best to convert it into a stateless functional component as seen below on ln 24
+// export default class Userlink extends React.Component {
+// 	render() {
+// 		return(
+// 			<div>
+// 				<PrivateHeader title="Your Links"/>
+// 				<LinksList />
+// 				<AddLink />
+// 			</div>
+// 		)
+// 	}
+// }
 
-export default class Userlink extends React.Component {
-	onLogout(e) {
-	    Accounts.logout(); 
-	}
-
-	onSubmit(e) {
-		const url = this.refs.url.value.trim()
-		e.preventDefault() // needed to prevent page reset on firing function
-		if (url) { 
-			Meteor.call('links.insert', url); // meteor method call to links.js meteor method
-			this.refs.url.value = '';
-		}
-	}
-
-	render() {
-		return(
-			<div>
-				<h1>Your Links</h1>
-				<button onClick={this.onLogout.bind(this)}>Logout</button>
-				<LinksList />
-				<form onSubmit={this.onSubmit.bind(this)}>
-					<input type="text" ref="url" placeholder="URL"></input>
-					<button>Add Link</button>
-				</form>
-			</div>
-		)
-	}
+export default () => {
+	return(
+		<div>
+			<PrivateHeader title="Your Links"/>
+			<LinksList />
+			<AddLink />
+		</div>
+	)
 }
-
