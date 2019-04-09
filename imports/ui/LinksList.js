@@ -4,8 +4,6 @@ import { Tracker } from 'meteor/tracker';
 import { Links } from '../api/links';
 import LinksListItem from './LinksListItem';
 
-
-
 export default class LinksList extends React.Component {
 	constructor(props) {
 		super(props);
