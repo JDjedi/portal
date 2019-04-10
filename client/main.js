@@ -21,7 +21,7 @@ Meteor.startup(() => {
 	// Meteor.call('addNumbers', "two piece tuesdays", 4, (err, res) => {
 	// 	console.log("addNumbers function firing", err, res);
 	// });
-	Session.set('showVisible', true);
+	Session.set('showVisible', true); // Session is initiated and created here!
 	
 	ReactDOM.render(routes, document.getElementById('app'));
 });

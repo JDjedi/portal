@@ -32,7 +32,7 @@ export default class LinksListItem extends React.Component {
 		return (
 			<div>
 				<p key={this.props._id}>{this.props.url} - {this.props.shortUrl}</p>
-				<p>{this.props.visible.toString()}</p>
+				{/*<p>{this.props.visible.toString()}</p>*/}
 				<button name="copy-button" ref="copy" data-clipboard-text={this.props.shortUrl}>
 					{this.state.justCopied ? "Copied" : "Copy"}
 				</button>

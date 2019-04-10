@@ -18,7 +18,7 @@ export default class LinksList extends React.Component {
 		this.linksTracker = Tracker.autorun(() => { // used to track changes to what you define from within, and then returns the changes
 			Meteor.subscribe('linksPublication') // calls out to the publication in api/links.js
 			const returnedLinks = Links.find({
-				visible: Session.get('showVisible')
+				visible: Session.get('showVisible') // filter db query based on session set value
 			}).fetch();
 			this.setState({ links: returnedLinks })
 		})
@@ -41,7 +41,7 @@ export default class LinksList extends React.Component {
 	render() {
 		return(
 			<div>
-				<p>Links List</p>
+				<h2>Links List</h2>
 				<div>
 					{this.renderLinksListItems()}
 				</div>
