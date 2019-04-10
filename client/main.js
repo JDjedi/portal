@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import ReactDOM from 'react-dom';
 import { Tracker } from 'meteor/tracker';
+import { Session } from 'meteor/session';
 
 import { routes, onAuthChange } from '../imports/routes/routes'
 import { Links } from '../imports/api/links';
@@ -20,8 +21,10 @@ Meteor.startup(() => {
 	// Meteor.call('addNumbers', "two piece tuesdays", 4, (err, res) => {
 	// 	console.log("addNumbers function firing", err, res);
 	// });
+	Session.set('showVisible', true);
 	
 	ReactDOM.render(routes, document.getElementById('app'));
 });
+
 
 

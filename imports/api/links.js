@@ -38,7 +38,40 @@ Meteor.methods({
 
 		Links.insert({
 			url,
-			userId: this.userId
+			userId: this.userId,
+			visible: true	// to update records already made go to meteor mongo
+							// do: db.links.updateMany({}, { $set: {visible: true}} // this adds visible prop to obj already in db
 		});
+	},
+
+	'links.setVisibility'(_id, visible) {
+		if (!this.userId) {
+			throw new Meteor.Error('not-authorized') // if this condition is not met, the program throws error and ends, otherwise it continues
+		}
+
+		new SimpleSchema({
+			_id: {
+				type: String,
+				min: 1
+			},
+			visible: {
+				type: Boolean
+			}
+		}).validate({_id, visible})
+
+		Links.update({_id: _id, userId: this.userId}, { $set: {visible: visible}})
 	}
 })
+
+
+
+
+
+
+
+
+
+
+
+
+

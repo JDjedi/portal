@@ -3,6 +3,7 @@ import React from 'react';
 import { Tracker } from 'meteor/tracker';
 import { Links } from '../api/links';
 import LinksListItem from './LinksListItem';
+import { Session } from 'meteor/session';
 
 export default class LinksList extends React.Component {
 	constructor(props) {
@@ -16,7 +17,9 @@ export default class LinksList extends React.Component {
 	componentDidMount() {
 		this.linksTracker = Tracker.autorun(() => { // used to track changes to what you define from within, and then returns the changes
 			Meteor.subscribe('linksPublication') // calls out to the publication in api/links.js
-			const returnedLinks = Links.find().fetch();
+			const returnedLinks = Links.find({
+				visible: Session.get('showVisible')
+			}).fetch();
 			this.setState({ links: returnedLinks })
 		})
 	}
