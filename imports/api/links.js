@@ -39,10 +39,14 @@ Meteor.methods({
 		Links.insert({
 			url,
 			userId: this.userId,
-			visible: true	// to update records already made go to meteor mongo
+			visible: true,	// to update records already made go to meteor mongo
 							// do: db.links.updateMany({}, { $set: {visible: true}} // this adds visible prop to obj already in db
+			visitedCount: 0,
+			lastVisitedAt: null
 		});
 	},
+
+
 
 	'links.setVisibility'(_id, visible) {
 		if (!this.userId) {
@@ -60,6 +64,26 @@ Meteor.methods({
 		}).validate({_id, visible})
 
 		Links.update({_id: _id, userId: this.userId}, { $set: {visible: visible}})
+	},
+
+
+
+	'links.trackVisit'(_id) {
+		new SimpleSchema({
+			_id: {
+				type: String,
+				min: 1
+			}
+		}).validate({_id})	
+
+		Links.update({_id: _id}, {
+			$set: {
+				lastVisitedAt: new Date().getTime()
+			},
+			$inc: {
+				visitedCount: 1
+			}
+		})
 	}
 })
 
