@@ -34,6 +34,13 @@ export default class LinksListItem extends React.Component {
 				<p key={this.props._id}>{this.props.url}</p>
 				{/*<p>{this.props.visible.toString()}</p>*/}
 				{/*<p>{this.props.visitedCount} - {this.props.lastVisitedAt}</p>*/}
+				<button>
+					<a href={this.props.url} target="_blank"> {/*Creates new tab when visit button clicked, sending user to link site*/}
+						Visit
+					</a>
+				</button>
+
+
 				<button name="copy-button" ref="copy" data-clipboard-text={this.props.url}>
 					{this.state.justCopied ? "Copied" : "Copy"}
 				</button>

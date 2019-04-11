@@ -5,7 +5,6 @@ import { Meteor } from 'meteor/meteor'
 import LinksList from './LinksList';
 import PrivateHeader from './PrivateHeader';
 import AddLink from './AddLink'
-import { Links } from '../api/links';
 import LinksListFilters from './LinksListFilters';
 
 // below was old functionaility, was not a container component; a more complicated container
