@@ -41,15 +41,15 @@ export const onAuthChange = (isAuthenticated) => {
     }
 }
 
-export const routes = (	
-	<Router history={history}>
-		<Switch>
-			<Route exact path="/userlink" component={Userlink} render={() => onEnterPublicPage(Login)} />
-			<Route exact path="/signup" component={Signup} render={() => onEnterPublicPage(Signup)} />
-			<Route exact path="/login" component={Login} render={() =>  onEnterPrivatePage(Userlink)} />
-			<Route exact path="*" component={Notfound} />
-		</Switch>
-	</Router>
+export const routes = ( 
+    <Router history={history}>
+        <Switch>
+            <Route exact path="/userlink" component={Userlink} render={() => onEnterPublicPage(Login)} />
+            <Route exact path="/signup" component={Signup} render={() => onEnterPublicPage(Signup)} />
+            <Route exact path="/login" component={Login} render={() =>  onEnterPrivatePage(Userlink)} />
+            <Route exact path="*" component={Notfound} />
+        </Switch>
+    </Router>
 );
 
 

@@ -16,3 +16,8 @@
 }
 
 
+.boxed-view__form {
+	display: flex; // default direction is left to right
+	flex-direction: column; // sets flex direction to how you want it, 4 deff selection choices
+
+}
