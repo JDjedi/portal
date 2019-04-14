@@ -20,3 +20,4 @@ static-html
 accounts-password
 accounts-base
 session
+fourseven:scss@=4.5.4
