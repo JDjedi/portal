@@ -9,7 +9,7 @@ import Notfound from '../ui/NotFound';
 import Login from '../ui/Login';
 
 const history = createBrowserHistory();
-const unAuthenticatedPages = ['/signup', '/login', '*', '/Userlink'];
+const unAuthenticatedPages = ['/signup', '/', '*', '/login'];
 const authenticatedPages = ['/userlink']
 
 
