@@ -9,7 +9,7 @@ import Notfound from '../ui/NotFound';
 import Login from '../ui/Login';
 
 const history = createBrowserHistory();
-const unAuthenticatedPages = ['/signup', '/login', '*'];
+const unAuthenticatedPages = ['/signup', '/login', '*', '/Userlink'];
 const authenticatedPages = ['/userlink']
 
 
@@ -44,7 +44,8 @@ export const onAuthChange = (isAuthenticated) => {
 export const routes = ( 
     <Router history={history}>
         <Switch>
-            <Route exact path="/" component={Userlink} render={() => onEnterPublicPage(Login)} />
+            <Route exact path="/" component={Login} render={() => onEnterPublicPage(Login)} />
+            <Route exact path="/userlink" component={Userlink} render={() => onEnterPublicPage(Login)} />
             <Route exact path="/signup" component={Signup} render={() => onEnterPublicPage(Signup)} />
             <Route exact path="/login" component={Login} render={() =>  onEnterPrivatePage(Userlink)} />
             <Route exact path="*" component={Notfound} />
