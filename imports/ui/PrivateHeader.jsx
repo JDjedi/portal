@@ -26,7 +26,7 @@ const PrivateHeader = (props) => {
 	return(
 		<div className="header">
 			<div className="wrapper">
-				<h2>{props.title}</h2>
+				<h3>{props.title}</h3>
 				<button className="button button--header" onClick={() => {
 					Accounts.logout()
 				}}>Logout</button>

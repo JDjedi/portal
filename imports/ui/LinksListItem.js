@@ -30,8 +30,8 @@ export default class LinksListItem extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<p key={this.props._id}>{this.props.url}</p>
+			<div className="item">
+				<h2 key={this.props._id}>{this.props.url}</h2>
 				{/*<p>{this.props.visible.toString()}</p>*/}
 				{/*<p>{this.props.visitedCount} - {this.props.lastVisitedAt}</p>*/}
 				<button className="button button--pill button--link">

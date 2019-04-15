@@ -1,5 +1,5 @@
-//title-bar
-$title-bar-color: #5b4681;
+// header
+$header-color: #5b4681;
 
 // Font sizes
 $base-font-size: 1.4rem; // 16 pixels;
@@ -20,4 +20,7 @@ $button-bg: #5b4681;
 $button-color: white;
 $button-pill-color: #5b4681;
 
-
+// item
+$item-bg: #f9f9f9;
+$item-border: darken($item-bg, 8%);
+$item-text-color: #777777;
