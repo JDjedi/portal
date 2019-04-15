@@ -15,9 +15,20 @@
 	text-decoration: none;
 }
 
+.button--header {
+	margin-bottom: 0rem;
+}
+
 .button--pill {
 	background-color: transparent;
 	border: 1px solid $button-pill-color;
 	color: $button-pill-color;
 	padding: .3rem .8rem;
+}
+
+
+.button--secondary {
+	background-color: #f9f9f9;
+	border: 1px solid #dddddd;
+	color: #777777;
 }

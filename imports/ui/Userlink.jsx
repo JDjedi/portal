@@ -25,10 +25,11 @@ export default () => {
 	return(
 		<div>
 			<PrivateHeader title="Your Links"/>
-			<LinksListFilters />
-			<AddLink />
-			<LinksList />
-			
+			<div className="page-content">
+				<AddLink />
+				<LinksListFilters />
+				<LinksList />
+			</div>
 		</div>
 	)
 }

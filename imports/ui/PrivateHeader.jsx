@@ -23,14 +23,14 @@ import PropTypes from 'prop-types';
 
 // stateless functional component pattern when needing proptypes to be passed
 const PrivateHeader = (props) => {
-
-
 	return(
-		<div>
-			<h1>{props.title}</h1>
-			<button onClick={() => {
-				Accounts.logout()
-			}}>Logout</button>
+		<div className="header">
+			<div className="wrapper">
+				<h2>{props.title}</h2>
+				<button className="button button--header" onClick={() => {
+					Accounts.logout()
+				}}>Logout</button>
+			</div>
 		</div>
 	)
 };
